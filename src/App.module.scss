@@ -1,0 +1,101 @@
+$box-size: 40px;
+$box-size-mobile: 20px;
+
+.game {
+    &-row {
+        display: flex;
+    }
+
+    &-box {
+        position: relative;
+        width: $box-size;
+        height: $box-size;
+        background: gray;
+        border: 1px solid #000000;
+        box-sizing: border-box;
+
+        &._0 {
+            background: #000;
+        }
+        &._1 {
+            background: #444;
+        }
+        &._2 {
+            background: #fff;
+        }
+        &._3 {
+            background: #fff;
+
+            &:after {
+                content: "";
+                position: relative;
+                left: $box-size / 3;
+                top: $box-size / 3;
+                display: block;
+                width: $box-size / 3;
+                height: $box-size / 3;
+                background: #000;
+                border-radius: 50%;
+
+                @media (max-width: 800px) {
+                    left: $box-size-mobile / 3;
+                    top: $box-size-mobile / 3;
+
+                    width: $box-size-mobile / 3;
+                    height: $box-size-mobile / 3;
+                }
+            }
+        }
+        &._4 {
+            background: linear-gradient(to right, #e3a86d 30%, #c77524 0);
+            background-size: 10px 100%;
+
+            &._checked {
+                background: linear-gradient(to right, #b85d43 30%, #6e3727 0);
+                background-size: 10px 100%;
+            }
+        }
+        &._5 {
+            background: green;
+            border-radius: 50%;
+            border: none;
+
+            &:before,
+            &:after {
+                content: "";
+                position: absolute;
+                top: $box-size / 4;
+                display: block;
+                width: $box-size / 9;
+                height: $box-size / 9;
+                background: #000000;
+                border-radius: 50%;
+                border: 3px solid #ffffff;
+                box-sizing: padding-box;
+
+                @media (max-width: 800px) {
+                    top: $box-size-mobile / 4;
+
+                    width: $box-size-mobile / 15;
+                    height: $box-size-mobile / 15;
+                }
+            }
+
+            &:before {
+                left: $box-size / 5;
+
+                @media (max-width: 800px) {
+                    left: $box-size-mobile / 5;
+                }
+            }
+
+            &:after {
+                right: $box-size / 5;
+
+                @media (max-width: 800px) {
+                    right: $box-size-mobile / 5;
+                }
+            }
+        }
+    }
+}

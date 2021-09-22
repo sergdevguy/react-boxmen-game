@@ -1,10 +1,32 @@
-import React from 'react';
-import './App.css';
+import React, { useState } from 'react';
+import s from './App.module.scss';
 
-const App = () => {
+import Levels from './components/Levels/Levels';
+
+function App() {
+  const [currentLevel, setCurrentLevel] = useState(0);
+  const [levelArray, setLevelArray] = useState(Levels[currentLevel].slice());
+
+  const drawLevel = (lvl) => {
+    return (lvl.map((rowItem, i) => {
+      return (
+        <div key={i} className={s["game-row"]}>
+          {rowItem.map((colItem, i) => {
+            return (
+              <div
+                key={i}
+                className={s["game-box"] + ' ' + s[`_${colItem}`]}
+              ></div>
+            )
+          })}
+        </div>
+      );
+    }))
+  }
+
   return (
-    <div className="App">
-      
+    <div className="game">
+      {drawLevel(levelArray)}
     </div>
   );
 }
