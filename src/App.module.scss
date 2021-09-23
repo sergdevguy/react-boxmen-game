@@ -211,6 +211,10 @@ $color-box-2: #50331b;
                 border: 1px solid gray;
                 border-radius: 5px;
 
+                &:hover {
+                    background: rgba(255,255,255,.2);
+                }
+
                 svg {
                     width: 60px;
                     height: 60px;
