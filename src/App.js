@@ -40,7 +40,7 @@ function App() {
       e.code === 'ArrowDown' ||
       e.code === 'ArrowLeft' ||
       e.code === 'ArrowRight') {
-      return moveHero(e.code);
+      moveHero(e.code);
     }
   }
 
@@ -146,24 +146,13 @@ function App() {
     }
   }
 
-  // useEffect(() => {
-  //   window.addEventListener('keypress', {
-  //     handleEvent(event) {
-  //       checkKey(event);
-  //     }
-  //   });
-
-  //   return () => {
-  //     window.removeEventListener('keypress', {
-  //       handleEvent(event) {
-  //         checkKey(event);
-  //       }
-  //     });
-  //   };
-  // }, [checkKey]);
+  useEffect(() => {
+    window.onkeydown = checkKey;
+  }, [checkKey]);
 
   return (
-    <div className={s["game"]} onKeyDown={(e) => checkKey(e)} tabIndex="0">
+    // <div className={s["game"]} onKeyDown={(e) => checkKey(e)} tabIndex="0">
+    <div className={s["game"]}>
       {drawLevel(cloneArr)}
       {!winStatus ?
         <button className={s["game__restart"]} onClick={() => restartLevel()}>Переиграть уровень</button>
