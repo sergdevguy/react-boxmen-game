@@ -4,7 +4,7 @@ $box-size-mobile: 30px;
 $color-walls: #4b6154;
 $color-floor: #c0dfc2;
 $color-hero: #a81e29;
-$color-box-1: #796d48;
+$color-box-1: #8d693a;
 $color-box-2: #50331b;
 
 .game {
@@ -153,7 +153,7 @@ $color-box-2: #50331b;
         position: fixed;
         width: 400px;
         max-width: calc(100% - 40px);
-        animation: show .5s linear;
+        animation: show 0.5s linear;
 
         &-wrapper {
             position: fixed;
@@ -189,6 +189,55 @@ $color-box-2: #50331b;
             }
             100% {
                 opacity: 1;
+            }
+        }
+    }
+
+    &__mobile {
+        display: none;
+    }
+    @media (max-width: 800px) {
+        &__mobile {
+            position: relative;
+            display: flex;
+            margin-top: 80px;
+
+            &-button {
+                width: 50px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid gray;
+                border-radius: 5px;
+
+                svg {
+                    width: 60px;
+                    height: 60px;
+
+                    path {
+                        fill: gray;
+                    }
+                }
+
+                &._right {
+                    margin-left: 70px;
+                    transform: rotate(180deg);
+                }
+
+                &._top {
+                    position: absolute;
+                    top: -60px;
+                    left: 50%;
+                    transform: rotate(90deg) translateY(50%);
+                }
+
+                &._bottom {
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    transform: rotate(-90deg) translateY(-50%);
+                }
             }
         }
     }

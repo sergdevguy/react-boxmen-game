@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import s from './App.module.scss';
+import ArrowIcon from './components/Icons/Arrow';
+import Arrow from './components/Icons/Arrow';
 
 import Levels from './components/Levels/Levels';
 
@@ -41,6 +43,9 @@ function App() {
       e.code === 'ArrowLeft' ||
       e.code === 'ArrowRight') {
       moveHero(e.code);
+    }
+    if (typeof(e) === 'string') {
+      moveHero(e);
     }
   }
 
@@ -94,6 +99,10 @@ function App() {
   const restartGame = () => {
     setCurrentLevel(0);
     setWinStatus(false);
+  }
+
+  const mobileButtons = (direction) => {
+
   }
 
   // sorry for this function
@@ -158,6 +167,12 @@ function App() {
         :
         <button className={s["game__restart"]} style={{ visibility: 'hidden' }}>Не баг а фича</button>
       }
+      <div className={s["game__mobile"]}>
+        <div onClick={() => checkKey('ArrowUp')} className={s["game__mobile-button"] + ' ' + s["_top"]}>{ArrowIcon}</div>
+        <div onClick={() => checkKey('ArrowDown')} className={s["game__mobile-button"] + ' ' + s["_bottom"]}>{ArrowIcon}</div>
+        <div onClick={() => checkKey('ArrowLeft')} className={s["game__mobile-button"] + ' ' + s["_left"]}>{ArrowIcon}</div>
+        <div onClick={() => checkKey('ArrowRight')} className={s["game__mobile-button"] + ' ' + s["_right"]}>{ArrowIcon}</div>
+      </div>
       {winStatus &&
         <div className={s["game__win"]}>
           <div className={s["game__win-wrapper"]}></div>
