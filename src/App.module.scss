@@ -141,12 +141,15 @@ $color-box-2: #50331b;
     }
 
     &__restart {
-        margin-top: 20px;
+        position: absolute;
+        top: 5px;
+        right: 5px;
         border: none;
         outline: none;
         padding: 5px 10px;
         cursor: pointer;
         background: gray;
+        border-radius: 5px;
     }
 
     &__win {
@@ -154,6 +157,7 @@ $color-box-2: #50331b;
         width: 400px;
         max-width: calc(100% - 40px);
         animation: show 0.5s linear;
+        z-index: 5;
 
         &-wrapper {
             position: fixed;
@@ -194,54 +198,49 @@ $color-box-2: #50331b;
     }
 
     &__mobile {
-        display: none;
-    }
-    @media (max-width: 800px) {
-        &__mobile {
-            position: relative;
+        position: relative;
+        display: flex;
+        margin-top: 80px;
+
+        &-button {
+            width: 50px;
+            height: 50px;
             display: flex;
-            margin-top: 80px;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid gray;
+            border-radius: 5px;
 
-            &-button {
-                width: 50px;
-                height: 50px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border: 1px solid gray;
-                border-radius: 5px;
+            &:hover {
+                background: rgba(255,255,255,.2);
+            }
 
-                &:hover {
-                    background: rgba(255,255,255,.2);
+            svg {
+                width: 60px;
+                height: 60px;
+
+                path {
+                    fill: gray;
                 }
+            }
 
-                svg {
-                    width: 60px;
-                    height: 60px;
+            &._right {
+                margin-left: 70px;
+                transform: rotate(180deg);
+            }
 
-                    path {
-                        fill: gray;
-                    }
-                }
+            &._top {
+                position: absolute;
+                top: -60px;
+                left: 50%;
+                transform: rotate(90deg) translateY(50%);
+            }
 
-                &._right {
-                    margin-left: 70px;
-                    transform: rotate(180deg);
-                }
-
-                &._top {
-                    position: absolute;
-                    top: -60px;
-                    left: 50%;
-                    transform: rotate(90deg) translateY(50%);
-                }
-
-                &._bottom {
-                    position: absolute;
-                    top: 0;
-                    left: 50%;
-                    transform: rotate(-90deg) translateY(-50%);
-                }
+            &._bottom {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: rotate(-90deg) translateY(-50%);
             }
         }
     }
