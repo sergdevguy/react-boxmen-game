@@ -103,7 +103,23 @@ $color-box-2: #50331b;
                     height: $box-size-mobile / 10;
                 }
 
-                
+                @keyframes eyes {
+                    0% {
+                        transform: scaleY(1);
+                    }
+                    15% {
+                        transform: scaleY(1);
+                    }
+                    19% {
+                        transform: scaleY(0);
+                    }
+                    23% {
+                        transform: scaleY(1);
+                    }
+                    100% {
+                        transform: scaleY(1);
+                    }
+                }
             }
 
             &:before {
@@ -160,6 +176,7 @@ $color-box-2: #50331b;
         }
 
         &-button {
+            margin-top: 30px;
             border: 1px solid gray;
             outline: none;
             padding: 5px 10px;
