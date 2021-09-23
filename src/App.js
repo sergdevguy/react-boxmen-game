@@ -7,7 +7,6 @@ function App() {
   const [currentLevel, setCurrentLevel] = useState(0);
   const [levelArray, setLevelArray] = useState(Levels?.slice()[currentLevel]?.map((i) => { return [...i] }) || null);
   const [winStatus, setWinStatus] = useState(false);
-  console.log(123);
 
   useEffect(() => {
     if (currentLevel === (Levels.length)) {
