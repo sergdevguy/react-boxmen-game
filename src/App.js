@@ -5,11 +5,11 @@ import Levels from './components/Levels/Levels';
 
 function App() {
   const [currentLevel, setCurrentLevel] = useState(0);
-  const [levelArray, setLevelArray] = useState(Levels.slice()[currentLevel].map((i) => { return [...i] }));
+  const [levelArray, setLevelArray] = useState(Levels?.slice()[currentLevel]?.map((i) => { return [...i] }) || null);
   const [winStatus, setWinStatus] = useState(false);
 
   useEffect(() => {
-    if (currentLevel === 4) {
+    if (currentLevel === (Levels.length)) {
       return;
     }
     setLevelArray(Levels.slice()[currentLevel].map((i) => { return [...i] }));
@@ -40,14 +40,14 @@ function App() {
       e.code === 'ArrowDown' ||
       e.code === 'ArrowLeft' ||
       e.code === 'ArrowRight') {
-      moveHero(e.code);
+      return moveHero(e.code);
     }
   }
 
   const checkWin = () => {
     for (let i = 0; i < cloneArr.length; i++) {
       for (let j = 0; j < cloneArr[i].length; j++) {
-        if (cloneArr[i][j] === 3) {
+        if (cloneArr[i][j] === 4 && Levels[currentLevel][i][j] !== 3) {
           return false;
         }
       }
@@ -82,11 +82,18 @@ function App() {
       case 'ArrowLeft':
         move(0, 1);
         break;
+      default:
+        break;
     }
   }
 
   const restartLevel = () => {
     setLevelArray(Levels.slice()[currentLevel].map((i) => { return [...i] }));
+  }
+
+  const restartGame = () => {
+    setCurrentLevel(0);
+    setWinStatus(false);
   }
 
   // sorry for this function
@@ -129,18 +136,49 @@ function App() {
     // move hero
     cloneArr[row - stepRow][col - stepCol] = 5;
 
-    setLevelArray(cloneArr);
+    if (currentLevel !== (Levels.length)) {
+      setLevelArray(cloneArr);
+    }
 
     if (checkWin()) {
       setWinStatus(true);
       setCurrentLevel(currentLevel + 1);
-    } 
+    }
   }
+
+  // useEffect(() => {
+  //   window.addEventListener('keypress', {
+  //     handleEvent(event) {
+  //       checkKey(event);
+  //     }
+  //   });
+
+  //   return () => {
+  //     window.removeEventListener('keypress', {
+  //       handleEvent(event) {
+  //         checkKey(event);
+  //       }
+  //     });
+  //   };
+  // }, [checkKey]);
 
   return (
     <div className={s["game"]} onKeyDown={(e) => checkKey(e)} tabIndex="0">
       {drawLevel(cloneArr)}
-      <button onClick={() => restartLevel()}>Restart</button>
+      {!winStatus ?
+        <button className={s["game__restart"]} onClick={() => restartLevel()}>Переиграть уровень</button>
+        :
+        <button className={s["game__restart"]} style={{ visibility: 'hidden' }}>Не баг а фича</button>
+      }
+      {winStatus &&
+        <div className={s["game__win"]}>
+          <div className={s["game__win-wrapper"]}></div>
+          <div className={s["game__win-text"]}>
+            <div>Вы победили!</div>
+            <button className={s["game__win-button"]} onClick={() => restartGame()}>Начать игру заного</button>
+          </div>
+        </div>
+      }
     </div>
   );
 }
